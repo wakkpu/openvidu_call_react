@@ -17,8 +17,8 @@ class VideoRoomComponent extends Component {
         super(props);
         this.OPENVIDU_SERVER_URL = this.props.openviduServerUrl
             ? this.props.openviduServerUrl
-            : 'https://' + window.location.hostname + ':4443';
-        this.OPENVIDU_SERVER_SECRET = this.props.openviduSecret ? this.props.openviduSecret : 'MY_SECRET';
+            : "https://i7a306.p.ssafy.io/openvidu/api";
+        this.OPENVIDU_SERVER_SECRET = this.props.openviduSecret ? this.props.openviduSecret : 'SYNERGY';
         this.hasBeenUpdated = false;
         this.layout = new OpenViduLayout();
         let sessionName = this.props.sessionName ? this.props.sessionName : 'SessionA';
@@ -560,7 +560,7 @@ class VideoRoomComponent extends Component {
         return new Promise((resolve, reject) => {
             var data = JSON.stringify({ customSessionId: sessionId });
             axios
-                .post(this.OPENVIDU_SERVER_URL + '/openvidu/api/sessions', data, {
+                .post(this.OPENVIDU_SERVER_URL + '/sessions', data, {
                     headers: {
                         Authorization: 'Basic ' + btoa('OPENVIDUAPP:' + this.OPENVIDU_SERVER_SECRET),
                         'Content-Type': 'application/json',
@@ -600,7 +600,7 @@ class VideoRoomComponent extends Component {
         return new Promise((resolve, reject) => {
             var data = JSON.stringify({});
             axios
-                .post(this.OPENVIDU_SERVER_URL + '/openvidu/api/sessions/' + sessionId + '/connection', data, {
+                .post(this.OPENVIDU_SERVER_URL + '/sessions/' + sessionId + '/connection', data, {
                     headers: {
                         Authorization: 'Basic ' + btoa('OPENVIDUAPP:' + this.OPENVIDU_SERVER_SECRET),
                         'Content-Type': 'application/json',
